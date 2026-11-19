@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sharma's Cafe & Bakes | Fresh Coffee & Snacks</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #fffaf5;
+            color: #2d1e17;
+            line-height: 1.6;
+        }
+
+        /* Sticky Navigation Bar */
+        header {
+            background: #2d1e17;
+            color: #fff;
+            padding: 1rem 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #f59e0b;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #f59e0b;
+        }
+
+        /* Hero Banner with Real Background Image */
+        .hero {
+            background: linear-gradient(rgba(29, 18, 12, 0.75), rgba(29, 18, 12, 0.75)),
+                        url('https://unsplash.com') center/cover no-repeat;
+            color: #fff;
+            text-align: center;
+            padding: 7rem 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 650px;
+            margin: 0 auto 2rem;
+            color: #f3e8df;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #f59e0b;
+            color: #1f130d;
+            padding: 0.9rem 2rem;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #d97706;
+            color: #fff;
+        }
+
+        /* Section Headings */
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            color: #2d1e17;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #6b5344;
+            margin-bottom: 3rem;
+        }
+
+        /* Menu Section */
+        .menu-section {
+            padding: 5rem 6%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .menu-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .menu-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .menu-info {
+            padding: 1.5rem;
+        }
+
+        .menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-header h3 {
+            font-size: 1.25rem;
+        }
+
+        .price {
+            background: #fef3c7;
+            color: #b45309;
+            font-weight: bold;
+            padding: 0.25rem 0.7rem;
+            border-radius: 20px;
+        }
+
+        /* Location & Timings Strip */
+        .info-strip {
+            background: #2d1e17;
+            color: #fff;
+            padding: 3.5rem 6%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .info-box h3 {
+            color: #f59e0b;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Order / Booking Form */
+        .contact-section {
+            padding: 5rem 6%;
+            max-width: 700px;
+            margin: auto;
+        }
+
+        form {
+            background: #fff;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 0.85rem;
+            border: 1px solid #d6ccc2;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        #statusMsg {
+            text-align: center;
+            font-weight: bold;
+            color: #15803d;
+            display: none;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a110d;
+            color: #a89f99;
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2.1rem; }
+            nav ul { gap: 0.9rem; font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sticky Navigation -->
+    <header>
+        <div class="logo">☕ Khushboo's Cafe</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#timings">Timings</a></li>
+                <li><a href="#order">Book Table</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>Fresh Coffee & Crispy Snacks</h1>
+        <p>Freshly brewed coffee, hot grilled sandwiches, and homemade brownies served every morning in your neighborhood.</p>
+        <a href="#menu" class="btn">Explore Menu</a>
+    </section>
+
+    <!-- Real Menu Cards with Photos & Prices -->
+    <section class="menu-section" id="menu">
+        <h2 class="section-title">Our Popular Menu</h2>
+        <p class="section-subtitle">Prepared fresh daily with 100% pure ingredients</p>
+
+        <div class="menu-grid">
+            <div class="menu-card">
+                <img src="https://unsplash.com" alt="Hazelnut Cappuccino">
+                <div class="menu-info">
+                    <div class="menu-header">
+                        <h3>Hazelnut Cappuccino</h3>
+                        <span class="price">₹140</span>
+                    </div>
+                    <p>Roasted Arabica coffee beans topped with creamy milk foam and rich hazelnut flavor.</p>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://unsplash.com" alt="Paneer Tikka Grill">
+                <div class="menu-info">
+                    <div class="menu-header">
+                        <h3>Paneer Tikka Grill</h3>
+                        <span class="price">₹160</span>
+                    </div>
+                    <p>Spiced tandoori paneer, crisp veggies, and melted cheese toasted in multigrain bread.</p>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://unsplash.com" alt="Hot Choco Brownie">
+                <div class="menu-info">
+                    <div class="menu-header">
+                        <h3>Hot Choco Brownie</h3>
+                        <span class="price">₹120</span>
+                    </div>
+                    <p>Warm dark chocolate walnut brownie served with vanilla ice cream and fudge sauce.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Address & Timings -->
+    <section class="info-strip" id="timings">
+        <div class="info-box">
+            <h3>📍 Location</h3>
+            <p>Shop No. 12, Station Road, Nalasopara East, Maharashtra</p>
+        </div>
+        <div class="info-box">
+            <h3>⏰ Opening Hours</h3>
+            <p>Mon – Sun: 8:00 AM to 11:00 PM</p>
+        </div>
+        <div class="info-box">
+            <h3>📞 Contact</h3>
+            <p>+91 9022738261 | Free Home Delivery (within 3 km)</p>
+        </div>
+    </section>
+
+    <!-- Working Table Booking / Order Form -->
+    <section class="contact-section" id="order">
+        <h2 class="section-title">Book a Table or Place an Order</h2>
+        <p class="section-subtitle">Fill out your details below and we will call you back within 5 minutes</p>
+
+        <form onsubmit="submitBooking(event)">
+            <input type="text" id="custName" placeholder="Your Full Name" required>
+            <input type="tel" id="custPhone" placeholder="Mobile Number (e.g. 9876543210)" required>
+            <select id="orderType">
+                <option value="Table Booking">Table Booking (2–4 Guests)</option>
+                <option value="Home Delivery">Home Delivery Order</option>
+                <option value="Birthday Party">Birthday / Small Party Booking</option>
+            </select>
+            <textarea rows="3" id="custNote" placeholder="Which items would you like, or what time will you arrive?"></textarea>
+            <button type="submit" class="btn">Confirm Request</button>
+            <p id="statusMsg"></p>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Sharma's Cafe & Bakes. Designed & Developed with HTML & CSS.</p>
+    </footer>
+
